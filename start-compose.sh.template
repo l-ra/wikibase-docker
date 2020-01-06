@@ -1,0 +1,5 @@
+export MW_ADMIN_PASS=
+export MW_ADMIN_EMAIL=
+export MW_WG_SECRET_KEY=
+
+docker-compose up -d 

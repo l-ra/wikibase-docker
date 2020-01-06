@@ -37,14 +37,14 @@ services:
       - MW_ELASTIC_PORT=9200
       # CONFIG - Change the default values below
       - MW_ADMIN_NAME=WikibaseAdmin
-      - MW_ADMIN_PASS=WikibaseDockerAdminPass
-      - MW_ADMIN_EMAIL=admin@example.com
-      - MW_WG_SECRET_KEY=secretkey
+      - MW_ADMIN_PASS=${MW_ADMIN_PASS}
+      - MW_ADMIN_EMAIL=${MW_ADMIN_EMAIL}
+      - MW_WG_SECRET_KEY=${MW_WG_SECRET_KEY}
       # CONFIG - Change the default values below (should match mysql values in this file)
       - DB_USER=wikiuser
       - DB_PASS=sqlpass
       - DB_NAME=my_wiki
-      - QS_PUBLIC_SCHEME_HOST_AND_PORT=http://localhost:9191
+      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://qs.pacov.city
   mysql:
     image: mariadb:10.3
     restart: unless-stopped
@@ -73,8 +73,9 @@ services:
         aliases:
          - wdqs-frontend.svc
     environment:
-      - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_HOST=wd.pacov.city
       - WDQS_HOST=wdqs-proxy.svc
+      - BRAND_TITLE=Pacov.City Wikibase
   wdqs:
     image: wikibase/wdqs:0.3.10
     restart: unless-stopped
@@ -86,7 +87,7 @@ services:
         aliases:
          - wdqs.svc
     environment:
-      - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_HOST=wd.pacov.city
       - WDQS_HOST=wdqs.svc
       - WDQS_PORT=9999
     expose:
@@ -116,7 +117,7 @@ services:
         aliases:
          - wdqs-updater.svc
     environment:
-     - WIKIBASE_HOST=wikibase.svc
+     - WIKIBASE_HOST=wd.pacov.city
      - WDQS_HOST=wdqs.svc
      - WDQS_PORT=9999
   elasticsearch:
@@ -143,9 +144,9 @@ services:
         aliases:
          - quickstatements.svc
     environment:
-      - QS_PUBLIC_SCHEME_HOST_AND_PORT=http://localhost:9191
-      - WB_PUBLIC_SCHEME_HOST_AND_PORT=http://localhost:8181
-      - WIKIBASE_SCHEME_AND_HOST=http://wikibase.svc
+      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://qs.pacov.city
+      - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://wd.pacov.city
+      - WIKIBASE_SCHEME_AND_HOST=https://wd.pacov.city
       - WB_PROPERTY_NAMESPACE=122
       - "WB_PROPERTY_PREFIX=Property:"
       - WB_ITEM_NAMESPACE=120
