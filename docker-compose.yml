@@ -84,7 +84,7 @@ services:
          - wdqs-frontend.svc
          - ${QUERYSVC_PUBLIC_HOST}
     environment:
-      - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_HOST=${WIKIDATA_PUBLIC_HOST}
       - WDQS_HOST=wdqs-proxy.svc
       - BRAND_TITLE=${BRAND_TITLE}
       # nginx proxy letsencrypt companion
@@ -103,7 +103,7 @@ services:
         aliases:
          - wdqs.svc
     environment:
-      - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_HOST=${WIKIDATA_PUBLIC_HOST}
       - WDQS_HOST=wdqs.svc
       - WDQS_PORT=9999
     expose:
@@ -133,7 +133,7 @@ services:
         aliases:
          - wdqs-updater.svc
     environment:
-     - WIKIBASE_HOST=wikibase.svc
+     - WIKIBASE_HOST=${WIKIDATA_PUBLIC_HOST}
      - WDQS_HOST=wdqs.svc
      - WDQS_PORT=9999
   elasticsearch:
