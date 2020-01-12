@@ -4,4 +4,4 @@ if [ -f ${DIR}/set-env ]; then
   . ${DIR}/set-env
 fi
 
-docker-compose -d 
+docker-compose up -d 
