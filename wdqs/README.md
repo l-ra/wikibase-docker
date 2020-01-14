@@ -30,6 +30,8 @@ Variable                 | Default            | Since   | Description
 `HEAP_SIZE`              | "1g"               | 0.2.5   | Heap size for blazegraph
 `WIKIBASE_HOST`          | "wikibase.svc"     | 0.2.5   | Hostname of the Wikibase host
 `WIKIBASE_SCHEME`        | "http"             | 0.2.5   | Scheme of the Wikibase host
+`WIKIBASE_CONCEPT_HOST`          | "wikibase.svc"     | 0.2.5   | Hostname of the Wikibase concept host
+`WIKIBASE_CONCEPT_SCHEME`        | "http"             | 0.2.5   | Scheme of the Wikibase concept host
 `WDQS_HOST`              | "wdqs.svc"         | 0.2.5   | Hostname of the WDQS host (this service)
 `WDQS_PORT`              | "9999"             | 0.2.5   | Port of the WDQS host (this service)
 `WDQS_ENTITY_NAMESPACES` | "120,122"          | 0.2.5   | Wikibase Namespaces to load data from

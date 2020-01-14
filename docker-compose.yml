@@ -104,6 +104,9 @@ services:
          - wdqs.svc
     environment:
       - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_SCHEME=http
+      - WIKIBASE_CONCEPT_HOST=${WIKIDATA_PUBLIC_HOST}
+      - WIKIBASE_CONCEPT_SCHEME=https
       - WDQS_HOST=wdqs.svc
       - WDQS_PORT=9999
     expose:
@@ -161,8 +164,8 @@ services:
          - quickstatements.svc
     environment:
       - WIKIBASE_HOST=wikibase.svc
-      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}:443
-      - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST}:443
+      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}
+      - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST}
       - WIKIBASE_SCHEME_AND_HOST=https://${WIKIDATA_PUBLIC_HOST}
       - WB_PROPERTY_NAMESPACE=122
       - "WB_PROPERTY_PREFIX=Property:"
