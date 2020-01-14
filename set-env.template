@@ -1,3 +1,4 @@
+export MW_ADMIN_NAME=
 export MW_ADMIN_PASS=
 export MW_ADMIN_EMAIL=
 export MW_WG_SECRET_KEY=
@@ -9,4 +10,5 @@ export LETSENCRYPT_EMAIL=
 
 export BRAND_TITLE=
 
+export DOCKER_REPO=
 
