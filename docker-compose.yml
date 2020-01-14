@@ -48,7 +48,7 @@ services:
       - DB_USER=wikiuser
       - DB_PASS=sqlpass
       - DB_NAME=my_wiki
-      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://qs.pacov.city
+      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}:443
       # nginx proxy letsencrypt companion
       - VIRTUAL_HOST=${WIKIDATA_PUBLIC_HOST}
       - VIRTUAL_PORT=80
