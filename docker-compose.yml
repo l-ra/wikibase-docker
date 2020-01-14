@@ -107,7 +107,7 @@ services:
       - WIKIBASE_SCHEME=http
       - WIKIBASE_CONCEPT_HOST=${WIKIDATA_PUBLIC_HOST:-wikibase.svc}
       - WIKIBASE_CONCEPT_SCHEME=https
-       - WDQS_HOST=wdqs.svc
+      - WDQS_HOST=wdqs.svc
       - WDQS_PORT=9999
     expose:
       - 9999
