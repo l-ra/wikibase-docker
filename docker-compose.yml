@@ -82,7 +82,7 @@ services:
       default:
         aliases:
          - wdqs-frontend.svc
-         - ${QUERYSVC_PUBLIC_HOST}
+         #- ${QUERYSVC_PUBLIC_HOST}
     environment:
       - WIKIBASE_HOST=${WIKIDATA_PUBLIC_HOST}
       - WDQS_HOST=wdqs-proxy.svc
@@ -160,8 +160,8 @@ services:
         aliases:
          - quickstatements.svc
     environment:
-      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}
-      - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST}
+      - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}:443
+      - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST}:443
       - WIKIBASE_SCHEME_AND_HOST=https://${WIKIDATA_PUBLIC_HOST}
       - WB_PROPERTY_NAMESPACE=122
       - "WB_PROPERTY_PREFIX=Property:"
