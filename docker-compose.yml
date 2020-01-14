@@ -32,7 +32,8 @@ services:
     networks:
       default:
         aliases:
-         - ${WIKIDATA_PUBLIC_HOST}
+         - wikibase.svc 
+         #- ${WIKIDATA_PUBLIC_HOST}
          # CONFIG - Add your real wikibase hostname here, for example wikibase-registry.wmflabs.org
     environment:
       - DB_SERVER=mysql.svc:3306
