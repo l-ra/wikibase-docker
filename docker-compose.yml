@@ -16,7 +16,7 @@ version: '3'
 
 services:
   wikibase:
-    image: wikibase/wikibase:1.33-bundle
+    image: ${DOCKER_REPO:-wikibase}/wikibase:1.33-bundle
     links:
       - mysql
 #   ports:
@@ -70,7 +70,7 @@ services:
         aliases:
          - mysql.svc
   wdqs-frontend:
-    image: wikibase/wdqs-frontend:latest
+    image: ${DOCKER_REPO:-wikibase}/wdqs-frontend:latest
     restart: unless-stopped
     # ports:
     # # CONFIG - Change the 8282 here to expose the Query Service UI on a different port
@@ -92,7 +92,7 @@ services:
       - LETSENCRYPT_HOST=${QUERYSVC_PUBLIC_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
   wdqs:
-    image: wikibase/wdqs:0.3.10
+    image: ${DOCKER_REPO:-wikibase}/wdqs:0.3.10
     restart: unless-stopped
     volumes:
       - query-service-data:/wdqs/data
@@ -111,7 +111,7 @@ services:
     expose:
       - 9999
   wdqs-proxy:
-    image: wikibase/wdqs-proxy
+    image: ${DOCKER_REPO:-wikibase}/wdqs-proxy
     restart: unless-stopped
     environment:
       - PROXY_PASS_HOST=wdqs.svc:9999
@@ -124,7 +124,7 @@ services:
         aliases:
          - wdqs-proxy.svc
   wdqs-updater:
-    image: wikibase/wdqs:0.3.10
+    image: ${DOCKER_REPO:-wikibase}/wdqs:0.3.10
     restart: unless-stopped
     command: /runUpdate.sh
     depends_on:
@@ -139,7 +139,7 @@ services:
      - WDQS_HOST=wdqs.svc
      - WDQS_PORT=9999
   elasticsearch:
-    image: wikibase/elasticsearch:5.6.14-extra
+    image: ${DOCKER_REPO:-wikibase}/elasticsearch:5.6.14-extra
     restart: unless-stopped
     networks:
       default:
@@ -150,7 +150,7 @@ services:
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
   # CONFING, in order to not load quickstatements then remove this entire section
   quickstatements:
-    image: wikibase/quickstatements:latest
+    image: ${DOCKER_REPO:-wikibase}/quickstatements:latest
 #    ports:
 #     - "9191:80"
     depends_on:
