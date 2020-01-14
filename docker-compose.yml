@@ -103,11 +103,11 @@ services:
         aliases:
          - wdqs.svc
     environment:
-      - WIKIBASE_HOST=wikibase.svc
+      - WIKIBASE_HOST=${WIKIDATA_PUBLIC_HOST:-wikibase.svc}
       - WIKIBASE_SCHEME=http
       - WIKIBASE_CONCEPT_HOST=${WIKIDATA_PUBLIC_HOST:-wikibase.svc}
-      - WIKIBASE_CONCEPT_SCHEME=http
-      - WDQS_HOST=wdqs.svc
+      - WIKIBASE_CONCEPT_SCHEME=https
+       - WDQS_HOST=wdqs.svc
       - WDQS_PORT=9999
     expose:
       - 9999
