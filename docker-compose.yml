@@ -160,7 +160,7 @@ services:
         aliases:
          - quickstatements.svc
     environment:
-      - 
+      - WIKIBASE_HOST=wikibase.svc
       - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST}:443
       - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST}:443
       - WIKIBASE_SCHEME_AND_HOST=https://${WIKIDATA_PUBLIC_HOST}
