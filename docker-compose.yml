@@ -169,7 +169,7 @@ services:
       - WIKIBASE_HOST=wikibase.svc
       - QS_PUBLIC_SCHEME_HOST_AND_PORT=https://${QUICKSTMT_PUBLIC_HOST:-http://localhost:9191}
       - WB_PUBLIC_SCHEME_HOST_AND_PORT=https://${WIKIDATA_PUBLIC_HOST:-http://localhost:98181}
-      - WIKIBASE_SCHEME_AND_HOST=https://${WIKIDATA_PUBLIC_HOST:-http://wikibase.svc}
+      - WIKIBASE_SCHEME_AND_HOST=http://wikibase.svc
       - WB_PROPERTY_NAMESPACE=122
       - "WB_PROPERTY_PREFIX=Property:"
       - WB_ITEM_NAMESPACE=120
