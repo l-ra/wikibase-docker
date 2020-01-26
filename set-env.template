@@ -10,5 +10,10 @@ export LETSENCRYPT_EMAIL=
 
 export BRAND_TITLE=
 
+export MYSQL_ROOT_PASSWORD=
+
 export DOCKER_REPO=
 
+export DB_USER=
+export DB_PASS=
+export MYSQLPHPADMIN_HOST=
