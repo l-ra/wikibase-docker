@@ -187,12 +187,12 @@ services:
      - wikibase
     volumes:
      - quickstatements-data:/quickstatements/data
-     labels:
+    labels:
       - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.rule=Host(`${QUICKSTMT_PUBLIC_HOST}`)"
       - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.entrypoints=websecure"
       - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.tls=true"
       - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.tls.certresolver=letsencrypt"
-      networks:
+    networks:
       default:
         aliases:
          - quickstatements.svc
