@@ -85,7 +85,12 @@ services:
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=${MYSQLPHPADMIN_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
-       
+    labels:
+      - "traefik.http.routers.${MYSQLPHPADMIN_HOST_ID}.rule=Host(`${MYSQLPHPADMIN_HOST}`)"
+      - "traefik.http.routers.${MYSQLPHPADMIN_HOST_ID}.entrypoints=websecure"
+      - "traefik.http.routers.${MYSQLPHPADMIN_HOST_ID}.tls=true"
+      - "traefik.http.routers.${MYSQLPHPADMIN_HOST_ID}.tls.certresolver=letsencrypt"
+           
   wdqs-frontend:
     image: ${DOCKER_REPO:-wikibase}/wdqs-frontend:latest
     restart: unless-stopped
@@ -182,7 +187,12 @@ services:
      - wikibase
     volumes:
      - quickstatements-data:/quickstatements/data
-    networks:
+     labels:
+      - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.rule=Host(`${QUICKSTMT_PUBLIC_HOST}`)"
+      - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.entrypoints=websecure"
+      - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.tls=true"
+      - "traefik.http.routers.${QUICKSTMT_PUBLIC_HOST_ID}.tls.certresolver=letsencrypt"
+      networks:
       default:
         aliases:
          - quickstatements.svc
