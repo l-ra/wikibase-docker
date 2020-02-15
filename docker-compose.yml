@@ -29,6 +29,11 @@ services:
     - mysql
     - elasticsearch
     restart: unless-stopped
+    labels:
+    - "traefik.http.routers.${WIKIDATA_PUBLIC_HOST_ID}.rule=Host(`${WIKIDATA_PUBLIC_HOST}`)"
+    - "traefik.http.routers.${WIKIDATA_PUBLIC_HOST_ID}.entrypoints=websecure"
+    - "traefik.http.routers.${WIKIDATA_PUBLIC_HOST_ID}.tls=true"
+    - "traefik.http.routers.${WIKIDATA_PUBLIC_HOST_ID}.tls.certresolver=letsencrypt"
     networks:
       default:
         aliases:
@@ -89,6 +94,11 @@ services:
     #  - "8282:80"
     depends_on:
     - wdqs-proxy
+    labels:
+    - "traefik.http.routers.${QUERYSVC_PUBLIC_HOST_ID}.rule=Host(`${QUERYSVC_PUBLIC_HOST}`)"
+    - "traefik.http.routers.${QUERYSVC_PUBLIC_HOST_ID}.entrypoints=websecure"
+    - "traefik.http.routers.${QUERYSVC_PUBLIC_HOST_ID}.tls=true"
+    - "traefik.http.routers.${QUERYSVC_PUBLIC_HOST_ID}.tls.certresolver=letsencrypt"
     networks:
       default:
         aliases:
