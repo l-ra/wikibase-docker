@@ -11,33 +11,38 @@ bash download-extension.sh Elastica;\
 bash download-extension.sh CirrusSearch;\
 bash download-extension.sh UniversalLanguageSelector;\
 bash download-extension.sh cldr;\
+bash download-extension.sh EntitySchema;\
 tar xzf OAuth.tar.gz;\
 tar xzf Elastica.tar.gz;\
 tar xzf CirrusSearch.tar.gz;\
 tar xzf UniversalLanguageSelector.tar.gz;\
 tar xzf cldr.tar.gz;\
 tar xzf WikibaseImport.tar.gz;\
+tar xzf EntitySchema.tar.gz;\
 rm ./*.tar.gz
 
+FROM wikibase/wikibase:1.34 as collector
+COPY --from=fetcher /WikibaseImport-master /var/www/html/extensions/WikibaseImport
+COPY --from=fetcher /Elastica /var/www/html/extensions/Elastica
+COPY --from=fetcher /OAuth /var/www/html/extensions/OAuth
+COPY --from=fetcher /CirrusSearch /var/www/html/extensions/CirrusSearch
+COPY --from=fetcher /UniversalLanguageSelector /var/www/html/extensions/UniversalLanguageSelector
+COPY --from=fetcher /cldr /var/www/html/extensions/cldr
+COPY --from=fetcher /EntitySchema /var/www/html/extensions/EntitySchema
+
 FROM composer as composer
-COPY --from=fetcher /WikibaseImport-master /WikibaseImport
-WORKDIR /WikibaseImport
-RUN composer install --no-dev
-COPY --from=fetcher /Elastica /Elastica
-WORKDIR /Elastica
+COPY --from=collector /var/www/html /var/www/html
+WORKDIR /var/www/html/
+RUN rm /var/www/html/composer.lock
 RUN composer install --no-dev
 
-FROM wikibase/wikibase:1.32
+FROM wikibase/wikibase:1.34
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends jq=1.* && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-COPY --from=fetcher /OAuth /var/www/html/extensions/OAuth
-COPY --from=composer /Elastica /var/www/html/extensions/Elastica
-COPY --from=fetcher /CirrusSearch /var/www/html/extensions/CirrusSearch
-COPY --from=fetcher /UniversalLanguageSelector /var/www/html/extensions/UniversalLanguageSelector
-COPY --from=fetcher /cldr /var/www/html/extensions/cldr
-COPY --from=composer /WikibaseImport /var/www/html/extensions/WikibaseImport
+
+COPY --from=composer /var/www/html /var/www/html
 COPY LocalSettings.php.wikibase-bundle.template /LocalSettings.php.wikibase-bundle.template
 COPY extra-install.sh /
 COPY extra-entrypoint-run-first.sh /
